@@ -1,4 +1,4 @@
-# OrdemDeServiceRestful
+# API Restful - Gerenciamento de Ordem de serviços
 
 API RESTful para sistema de gestão de Ordem de Serviços, construída com Java 8, Spring 2.1+ e H2 database memory.
 
