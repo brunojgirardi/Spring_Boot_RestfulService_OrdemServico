@@ -21,4 +21,7 @@ Rodar o projeto local e acessar localhost:8080/swagger-ui.html
 Link da API via postman:
 https://documenter.getpostman.com/view/5423947/TVKEXx4G
 
-![Screenshot](https://ibb.co/StNH0TK)
+
+<p align="center">
+  <img src="https://ibb.co/StNH0TK"  title="Swagger Api Ordem De Serviço">
+</p>
