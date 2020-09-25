@@ -16,7 +16,8 @@ Importanto o projeto no Eclipse como projeto existente Maven, verificar necessid
 As classes de serviço responsáveis pelos endpoints podem ser acessadas através do pacote controllers, em src\main\java\br\com\bruno\osapi\controlle.
 
 Link da API via Swagger:
-Rodar o projeto local e acessar localhost:8080/swagger-ui
+Rodar o projeto local e acessar localhost:8080/swagger-ui.html
 
 Link da API via postman:
 https://documenter.getpostman.com/view/5423947/TVKEXx4G
+
