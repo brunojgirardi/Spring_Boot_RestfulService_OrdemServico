@@ -21,4 +21,4 @@ Rodar o projeto local e acessar localhost:8080/swagger-ui.html
 Link da API via postman:
 https://documenter.getpostman.com/view/5423947/TVKEXx4G
 
-![alt text](https://ibb.co/StNH0TK)
+![Screenshot](https://ibb.co/StNH0TK)
