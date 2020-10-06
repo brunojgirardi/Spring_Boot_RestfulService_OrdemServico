@@ -3,12 +3,7 @@ package br.com.bruno.osapi.controller.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import br.com.bruno.osapi.modelo.Cliente;
-import br.com.bruno.osapi.modelo.OrdemServico;
 
 public class ClienteDto {
 

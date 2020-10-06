@@ -43,7 +43,7 @@ public class ComentariosController {
 
 	@GetMapping
 	public List<ComentariosOrdemServicoDto> lista() {
-		List<OrdemServico> ordensDeServico = ordemServicoRepository.findAll();
+		List<OrdemServico> ordensDeServico = ordemServicoRepository.findByComentariosIsNotEmpty();
 		return ComentariosOrdemServicoDto.converter(ordensDeServico);
 	}
 
