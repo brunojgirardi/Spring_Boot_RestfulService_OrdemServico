@@ -3,7 +3,7 @@ package br.com.bruno.osapi.config.dto;
 public class ErroFormularioDto {
 
 	private String campo;
-	private String mensagemErro;
+	private String mensagemErro;	
 
 	public ErroFormularioDto(String campo, String mensagemErro) {
 		super();
