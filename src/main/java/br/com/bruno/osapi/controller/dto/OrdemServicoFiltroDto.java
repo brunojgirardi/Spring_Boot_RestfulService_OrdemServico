@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.bruno.osapi.modelo.OrdemServico;
+import br.com.bruno.osapi.modelo.StatusOrdemServico;
 
 public class OrdemServicoFiltroDto {
 
@@ -14,6 +15,7 @@ public class OrdemServicoFiltroDto {
 	private String equipamento;
 	private String descricao;
 	private String nomeExecutor;
+	private StatusOrdemServico status;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 
 	public OrdemServicoFiltroDto(OrdemServico ordemServico) {
@@ -21,9 +23,10 @@ public class OrdemServicoFiltroDto {
 		this.marca = ordemServico.getMarca();
 		this.modelo = ordemServico.getModelo();
 		this.equipamento = ordemServico.getEquipamento();
-		this.dataCriacao = ordemServico.getDataCriacao();
 		this.descricao = ordemServico.getDescricao();
 		this.nomeExecutor = ordemServico.getExecutorOs().getNome();
+		this.status = ordemServico.getStatus();
+		this.dataCriacao = ordemServico.getDataCriacao();
 	}
 
 	public Long getId() {
@@ -48,6 +51,10 @@ public class OrdemServicoFiltroDto {
 
 	public String getDescricao() {
 		return descricao;
+	}
+
+	public StatusOrdemServico getStatus() {
+		return status;
 	}
 
 	public String getNomeExecutor() {

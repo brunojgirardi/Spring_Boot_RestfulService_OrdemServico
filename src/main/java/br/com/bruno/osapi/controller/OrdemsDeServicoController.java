@@ -38,7 +38,7 @@ public class OrdemsDeServicoController {
 	private ClienteRepository clienteRepository;
 
 	@GetMapping
-	public List<OrdemServicoDto> listar() {
+	public List<OrdemServicoDto> listar() {	
 		List<OrdemServico> ordensDeServico = ordemServicoRepository.findAll();		
 		return OrdemServicoDto.converter(ordensDeServico);
 	}

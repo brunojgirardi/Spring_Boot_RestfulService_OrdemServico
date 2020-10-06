@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.bruno.osapi.modelo.OrdemServico;
+import br.com.bruno.osapi.modelo.StatusOrdemServico;
 
 public class OrdemServicoDto {
 
@@ -15,6 +16,7 @@ public class OrdemServicoDto {
 	private String descricao;
 	private String nomeExecutor;
 	private String nomeCliente;
+	private StatusOrdemServico status;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 
 	public OrdemServicoDto(OrdemServico ordemServico) {
@@ -28,8 +30,9 @@ public class OrdemServicoDto {
 		} else {
 			this.nomeExecutor = ordemServico.getExecutorOs().getNome();
 		}
-		this.dataCriacao = ordemServico.getDataCriacao();
 		this.nomeCliente = ordemServico.getCliente().getNome();
+		this.status = ordemServico.getStatus();
+		this.dataCriacao = ordemServico.getDataCriacao();
 	}
 
 	public Long getId() {
@@ -58,6 +61,10 @@ public class OrdemServicoDto {
 
 	public String getNomeExecutor() {
 		return nomeExecutor;
+	}
+
+	public StatusOrdemServico getStatus() {
+		return status;
 	}
 
 	public String getNomeCliente() {
