@@ -33,29 +33,29 @@ public class ClienteController {
 		List<Cliente> clientes = clienteRepository.findAll();
 		return ClienteDto.converter(clientes);
 	}
-	
+
 	@GetMapping("/filtro")
-	public List<Cliente> listaFiltro(String nomeCliente) {	
+	public List<Cliente> listaFiltro(String nomeCliente) {
 		if (nomeCliente == null) {
 			List<Cliente> clientes = clienteRepository.findAll();
 			return clientes;
-		} else {		
-			List<Cliente> clientes = clienteRepository.findByNome(nomeCliente);			
+		} else {
+			List<Cliente> clientes = clienteRepository.findByNome(nomeCliente);
 			return clientes;
 		}
 	}
-	
+
 	@PostMapping
 	@Transactional
 	public ResponseEntity<ClienteDto> cadastrar(@RequestBody @Valid ClienteForm osForm, UriComponentsBuilder uriBuilder) {
 		Cliente cliente = osForm.converter(clienteRepository);
-		if(clienteRepository.findByEmail(cliente.getEmail()) != null) {
+		if (clienteRepository.findByEmail(cliente.getEmail()) != null) {
 			throw new DomainException("Já existe cliente registrado com esse e-mail. Tente inserir outro.");
 		}
-        
+
 		clienteRepository.save(cliente);
 		URI uri = uriBuilder.path("/cliente/{id}").buildAndExpand(cliente.getId()).toUri();
 		return ResponseEntity.created(uri).body(new ClienteDto(cliente));
 	}
-	
+
 }
