@@ -17,6 +17,7 @@ public class ComentariosOrdemServicoDto {
 	private LocalDateTime dataCriacao;
 	private String nomeExecutor;
 	private String descricao;
+	private String nomeCliente;
 	private StatusOrdemServico status;
 	private List<ComentariosDto> comentarios;
 
@@ -33,6 +34,7 @@ public class ComentariosOrdemServicoDto {
 		this.dataCriacao = ordemServico.getDataCriacao();
 		this.descricao = ordemServico.getDescricao();
 		this.status = ordemServico.getStatus();
+		this.nomeCliente = ordemServico.getCliente().getNome();
 		this.comentarios = new ArrayList<>();
 		this.comentarios.addAll(ordemServico.getComentarios().stream().map(ComentariosDto::new).collect(Collectors.toList()));
 	}
@@ -65,6 +67,10 @@ public class ComentariosOrdemServicoDto {
 		return descricao;
 	}
 
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
 	public StatusOrdemServico getStatus() {
 		return status;
 	}
@@ -75,6 +81,6 @@ public class ComentariosOrdemServicoDto {
 
 	public static List<ComentariosOrdemServicoDto> converter(List<OrdemServico> ordemServicos) {
 		return ordemServicos.stream().map(ComentariosOrdemServicoDto::new).collect(Collectors.toList());
-	}	
+	}
 
 }

@@ -17,25 +17,26 @@ public class DetalhesOrdemServicoDto {
 	private LocalDateTime dataCriacao;
 	private String nomeExecutor;
 	private String descricao;
+	private String nomeCliente;
 	private StatusOrdemServico status;
 	private List<ComentariosDto> comentarios;
 
 	public DetalhesOrdemServicoDto(OrdemServico ordemServico) {
-		this.id = ordemServico.getId();		
+		this.id = ordemServico.getId();
 		if (ordemServico.getExecutorOs() == null) {
-			this.nomeExecutor = "Sem executor";	
+			this.nomeExecutor = "Sem executor";
 		} else {
 			this.nomeExecutor = ordemServico.getExecutorOs().getNome();
 		}
 		this.marca = ordemServico.getMarca();
 		this.modelo = ordemServico.getModelo();
 		this.equipamento = ordemServico.getEquipamento();
-		this.dataCriacao = ordemServico.getDataCriacao();	
+		this.dataCriacao = ordemServico.getDataCriacao();
 		this.descricao = ordemServico.getDescricao();
+		this.nomeCliente = ordemServico.getCliente().getNome();
 		this.status = ordemServico.getStatus();
 		this.comentarios = new ArrayList<>();
-		this.comentarios.addAll(ordemServico.getComentarios().stream().map(ComentariosDto::new)
-				.collect(Collectors.toList()));
+		this.comentarios.addAll(ordemServico.getComentarios().stream().map(ComentariosDto::new).collect(Collectors.toList()));
 	}
 
 	public Long getId() {
@@ -66,6 +67,10 @@ public class DetalhesOrdemServicoDto {
 		return descricao;
 	}
 
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
 	public StatusOrdemServico getStatus() {
 		return status;
 	}
@@ -73,7 +78,7 @@ public class DetalhesOrdemServicoDto {
 	public List<ComentariosDto> getComentarios() {
 		return comentarios;
 	}
-	
+
 	public static List<DetalhesOrdemServicoDto> converter(List<OrdemServico> ordemServicos) {
 		return ordemServicos.stream().map(DetalhesOrdemServicoDto::new).collect(Collectors.toList());
 	}

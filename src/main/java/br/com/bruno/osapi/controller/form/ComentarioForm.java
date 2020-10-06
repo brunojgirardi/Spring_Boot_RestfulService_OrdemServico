@@ -41,7 +41,6 @@ public class ComentarioForm {
 				.orElseThrow(() -> new EntityNotFoundException("Executor não encontrado."));
 		
 		Comentarios novoComentario = new Comentarios();
-		System.out.println(novoComentario.getId());
 		novoComentario.setOrdemServico(ordemServico);
 		novoComentario.setExecutorOs(executorOs);
 		novoComentario.setMensagem(this.descricaoComentario);

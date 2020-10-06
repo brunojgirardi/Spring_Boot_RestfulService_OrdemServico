@@ -14,6 +14,7 @@ public class OrdemServicoDto {
 	private String equipamento;
 	private String descricao;
 	private String nomeExecutor;
+	private String nomeCliente;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 
 	public OrdemServicoDto(OrdemServico ordemServico) {
@@ -23,11 +24,12 @@ public class OrdemServicoDto {
 		this.equipamento = ordemServico.getEquipamento();
 		this.descricao = ordemServico.getDescricao();
 		if (ordemServico.getExecutorOs() == null) {
-			this.nomeExecutor = "Sem executor";	
+			this.nomeExecutor = "Sem executor";
 		} else {
 			this.nomeExecutor = ordemServico.getExecutorOs().getNome();
 		}
 		this.dataCriacao = ordemServico.getDataCriacao();
+		this.nomeCliente = ordemServico.getCliente().getNome();
 	}
 
 	public Long getId() {
@@ -56,6 +58,10 @@ public class OrdemServicoDto {
 
 	public String getNomeExecutor() {
 		return nomeExecutor;
+	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
 	}
 
 	public static List<OrdemServicoDto> converter(List<OrdemServico> ordemServicos) {

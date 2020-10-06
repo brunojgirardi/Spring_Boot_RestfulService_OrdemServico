@@ -6,22 +6,22 @@ import br.com.bruno.osapi.modelo.Comentarios;
 
 public class ComentariosDto {
 
-	private Long id;
-	private Long idOs;
+	private Long idComentario;
+	private Long idOrdemServico;
 	private String mensagem;
 	private LocalDateTime dataPublicacao;
 	private String nomeExecutor;
 
 	public ComentariosDto(Comentarios comentarios) {
-		this.id = comentarios.getId();
+		this.idComentario = comentarios.getId();
 		this.mensagem = comentarios.getMensagem();
 		this.dataPublicacao = comentarios.getDataPublicacao();
 		this.nomeExecutor = comentarios.getExecutorOs().getNome();
-		this.idOs = comentarios.getOrdemServico().getId();
+		this.idOrdemServico = comentarios.getOrdemServico().getId();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdComentario() {
+		return idComentario;
 	}
 
 	public String getMensagem() {
@@ -36,8 +36,8 @@ public class ComentariosDto {
 		return nomeExecutor;
 	}
 
-	public Long getIdOs() {
-		return idOs;
+	public Long getIdOrdemServico() {
+		return idOrdemServico;
 	}
 
 }
