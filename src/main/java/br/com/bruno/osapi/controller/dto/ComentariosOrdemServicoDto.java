@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import br.com.bruno.osapi.modelo.OrdemServico;
 import br.com.bruno.osapi.modelo.StatusOrdemServico;
 
-public class DetalhesOrdemServicoDto {
+public class ComentariosOrdemServicoDto {
 
 	private Long id;
 	private String marca;
@@ -21,7 +21,7 @@ public class DetalhesOrdemServicoDto {
 	private StatusOrdemServico status;
 	private List<ComentariosDto> comentarios;
 
-	public DetalhesOrdemServicoDto(OrdemServico ordemServico) {
+	public ComentariosOrdemServicoDto(OrdemServico ordemServico) {
 		this.id = ordemServico.getId();
 		if (ordemServico.getExecutorOs() == null) {
 			this.nomeExecutor = "Sem executor";
@@ -33,8 +33,8 @@ public class DetalhesOrdemServicoDto {
 		this.equipamento = ordemServico.getEquipamento();
 		this.dataCriacao = ordemServico.getDataCriacao();
 		this.descricao = ordemServico.getDescricao();
-		this.nomeCliente = ordemServico.getCliente().getNome();
 		this.status = ordemServico.getStatus();
+		this.nomeCliente = ordemServico.getCliente().getNome();
 		this.comentarios = new ArrayList<>();
 		this.comentarios.addAll(ordemServico.getComentarios().stream().map(ComentariosDto::new).collect(Collectors.toList()));
 	}
@@ -79,8 +79,8 @@ public class DetalhesOrdemServicoDto {
 		return comentarios;
 	}
 
-	public static List<DetalhesOrdemServicoDto> converter(List<OrdemServico> ordemServicos) {
-		return ordemServicos.stream().map(DetalhesOrdemServicoDto::new).collect(Collectors.toList());
+	public static List<ComentariosOrdemServicoDto> converter(List<OrdemServico> ordemServicos) {
+		return ordemServicos.stream().map(ComentariosOrdemServicoDto::new).collect(Collectors.toList());
 	}
 
 }

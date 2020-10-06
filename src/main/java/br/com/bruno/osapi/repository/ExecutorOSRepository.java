@@ -8,6 +8,6 @@ import br.com.bruno.osapi.modelo.ExecutorOrdemServico;
 
 public interface ExecutorOSRepository extends JpaRepository<ExecutorOrdemServico, Long> {
 
-	List<ExecutorOrdemServico> findByNome(String nomeExcecutorOs);
+	List<ExecutorOrdemServico> findByNome(String nomeExecutorOs);
 
 }

@@ -2,6 +2,7 @@ package br.com.bruno.osapi.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -37,14 +38,23 @@ public class OrdemsDeServicoController {
 	private ClienteRepository clienteRepository;
 
 	@GetMapping
-	public List<OrdemServicoDto> lista() {
-		List<OrdemServico> ordensDeServico = ordemServicoRepository.findAll();
+	public List<OrdemServicoDto> listar() {
+		List<OrdemServico> ordensDeServico = ordemServicoRepository.findAll();		
 		return OrdemServicoDto.converter(ordensDeServico);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<OrdemServicoDto> listarPorOrdemServico(@PathVariable Long id) {
+		Optional<OrdemServico> ordensDeServico = ordemServicoRepository.findById(id);
+		if (ordensDeServico.isPresent()) {
+			return ResponseEntity.ok(new OrdemServicoDto(ordensDeServico.get()));
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 	@RequestMapping("/filtro")
 	@GetMapping
-	public List<OrdemServicoFiltroDto> listaFiltro(String nomeExecutor) {
+	public List<OrdemServicoFiltroDto> listaFiltroPorExecutor(String nomeExecutor) {
 		if (nomeExecutor == null) {
 			List<OrdemServico> ordensDeServico = ordemServicoRepository.findAll();
 			return OrdemServicoFiltroDto.converter(ordensDeServico);
@@ -53,12 +63,13 @@ public class OrdemsDeServicoController {
 			return OrdemServicoFiltroDto.converter(ordensDeServico);
 		}
 	}
-
+	
 	@PostMapping
 	@Transactional
 	public ResponseEntity<OrdemServicoDto> cadastrar(@RequestBody @Valid OrdemServicoForm osForm, UriComponentsBuilder uriBuilder) {
 		OrdemServico ordemServico = osForm.converter(clienteRepository);
 		ordemServicoRepository.save(ordemServico);
+
 		URI uri = uriBuilder.path("/ordemservicos/{id}").buildAndExpand(ordemServico.getId()).toUri();
 		return ResponseEntity.created(uri).body(new OrdemServicoDto(ordemServico));
 	}
@@ -66,15 +77,23 @@ public class OrdemsDeServicoController {
 	@PutMapping("/{id}")
 	@Transactional
 	public ResponseEntity<OrdemServicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoOrdemServicoForm osFormPut) {
-		OrdemServico ordemServico = osFormPut.atualizar(id, ordemServicoRepository);
-		return ResponseEntity.ok(new OrdemServicoDto(ordemServico));	
+		Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+		if (optional.isPresent()) {
+			OrdemServico ordemServico = osFormPut.atualizar(id, ordemServicoRepository);
+			return ResponseEntity.ok(new OrdemServicoDto(ordemServico));
+		}		
+		return ResponseEntity.notFound().build();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@Transactional
-	public ResponseEntity<OrdemServicoDto> remover(@PathVariable Long id) {
-		ordemServicoRepository.deleteById(id);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<?> remover(@PathVariable Long id) {
+		Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+		if (optional.isPresent()) {
+			ordemServicoRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 }

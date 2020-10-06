@@ -16,23 +16,33 @@ public class Comentarios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Size(max = 255)
 	@NotNull
 	private String mensagem;
-	
+
 	private LocalDateTime dataPublicacao = LocalDateTime.now();
-	
+
 	private LocalDateTime dataEdicao;
-	
-	
+
 	@ManyToOne
 	private OrdemServico ordemServico;
-	
+
 	@ManyToOne
 	private ExecutorOrdemServico executorOs;
-	
+
 	private Boolean solucionado = false;
+
+	public Comentarios() {
+		super();
+	}
+
+	public Comentarios(String mensagem, OrdemServico ordemServico, ExecutorOrdemServico executorOs, Boolean solucionado) {
+		this.mensagem = mensagem;
+		this.ordemServico = ordemServico;
+		this.executorOs = executorOs;
+		this.solucionado = solucionado;
+	}
 
 	@Override
 	public int hashCode() {
@@ -91,14 +101,6 @@ public class Comentarios {
 		this.dataPublicacao = dataPublicacao;
 	}
 
-	public LocalDateTime getDataEdicao() {
-		return dataEdicao;
-	}
-
-	public void setDataEdicao(LocalDateTime dataEdicao) {
-		this.dataEdicao = dataEdicao;
-	}
-
 	public ExecutorOrdemServico getExecutorOs() {
 		return executorOs;
 	}
@@ -113,6 +115,14 @@ public class Comentarios {
 
 	public void setSolucionado(Boolean solucionado) {
 		this.solucionado = solucionado;
+	}
+
+	public LocalDateTime getDataEdicao() {
+		return dataEdicao;
+	}
+
+	public void setDataEdicao(LocalDateTime dataEdicao) {
+		this.dataEdicao = dataEdicao;
 	}
 
 }

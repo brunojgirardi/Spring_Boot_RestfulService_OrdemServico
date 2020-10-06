@@ -1,6 +1,5 @@
 package br.com.bruno.osapi.controller.form;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.bruno.osapi.modelo.OrdemServico;

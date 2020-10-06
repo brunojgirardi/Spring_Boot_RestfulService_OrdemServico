@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -35,11 +35,11 @@ public class OrdemServico {
 	private StatusOrdemServico status = StatusOrdemServico.ABERTA;
 	@NotNull
 	@ManyToOne
-	private Cliente cliente;
-	@OneToMany
-	private List<Comentarios> comentarios = new ArrayList<>();
+	private Cliente cliente; 
+	@OneToMany(mappedBy = "ordemServico", cascade = CascadeType.ALL)
+	private List<Comentarios> comentarios = new ArrayList<>(); 
 	@ManyToOne
-	private ExecutorOrdemServico executorOrdemServico;
+	private ExecutorOrdemServico executorOrdemServico; 
 
 	public OrdemServico() {	
 	}
@@ -140,6 +140,11 @@ public class OrdemServico {
 	public void setComentarios(List<Comentarios> comentarios) {
 		this.comentarios = comentarios;
 	}
+	
+	public void adicionarComentario(Comentarios comentario) {
+        this.comentarios.add(comentario);
+        comentario.setOrdemServico(this);   
+    }
 
 	public LocalDateTime getDataFechamento() {
 		return dataFechamento;

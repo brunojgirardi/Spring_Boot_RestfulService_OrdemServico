@@ -55,8 +55,7 @@ public class ClienteForm {
 		this.telefone = telefone;
 	}
 
-	public Cliente converter(ClienteRepository repository) {
-
+	public Cliente converter(ClienteRepository repository) {	
 		return new Cliente(nome, endereco, email, telefone);
 	}
 
