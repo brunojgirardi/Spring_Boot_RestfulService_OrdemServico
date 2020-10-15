@@ -47,7 +47,8 @@ public class ErroValidacaoHandler {
 
 		String errorMessageDescription = ex.getLocalizedMessage();
 		if (errorMessageDescription == null)
-			errorMessageDescription = ex.toString();
+			//errorMessageDescription = ex.toString();
+			errorMessageDescription = "Null Pointer Exception";
 		MensagemDeErro mensagemErro = new MensagemDeErro(new Date(), errorMessageDescription);
 		return new ResponseEntity<>(mensagemErro, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
