@@ -75,4 +75,14 @@ public class OrdemServicoDto {
 		return ordemServicos.stream().map(OrdemServicoDto::new).collect(Collectors.toList());
 	}
 
+	// opção sem java 8
+//	public static List<OrdemServicoDto> converter(List<OrdemServico> ordemServicos) {
+//		List<OrdemServicoDto> ordemServicoDtos = new ArrayList<OrdemServicoDto>();
+//		for (OrdemServico ordemServico : ordemServicos) {
+//			OrdemServicoDto ordemServicoDto = new OrdemServicoDto(ordemServico);
+//			ordemServicoDtos.add(ordemServicoDto);
+//		}
+//		return ordemServicoDtos;
+//	}	
+	
 }

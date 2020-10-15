@@ -59,7 +59,7 @@ public class OrdemsDeServicoController {
 			List<OrdemServico> ordensDeServico = ordemServicoRepository.findAll();
 			return OrdemServicoFiltroDto.converter(ordensDeServico);
 		} else {
-			List<OrdemServico> ordensDeServico = ordemServicoRepository.findByExecutorOrdemServico_Nome(nomeExecutor);
+			List<OrdemServico> ordensDeServico = ordemServicoRepository.carregarPorOrdemServicoNome(nomeExecutor);
 			return OrdemServicoFiltroDto.converter(ordensDeServico);
 		}
 	}
