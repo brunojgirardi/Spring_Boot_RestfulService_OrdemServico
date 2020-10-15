@@ -23,8 +23,14 @@ public class OrdemServicoFiltroDto {
 		this.marca = ordemServico.getMarca();
 		this.modelo = ordemServico.getModelo();
 		this.equipamento = ordemServico.getEquipamento();
-		this.descricao = ordemServico.getDescricao();
-		this.nomeExecutor = ordemServico.getExecutorOs().getNome();
+		this.descricao = ordemServico.getDescricao();	
+		
+		if (ordemServico.getExecutorOs() == null) {
+			this.nomeExecutor = "Sem executor";
+		} else {
+			this.nomeExecutor = ordemServico.getExecutorOs().getNome();
+		}
+		
 		this.status = ordemServico.getStatus();
 		this.dataCriacao = ordemServico.getDataCriacao();
 	}
